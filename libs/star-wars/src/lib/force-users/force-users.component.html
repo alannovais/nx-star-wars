@@ -1,0 +1,28 @@
+<main class="organize-items">
+  <section class="insert-button-position" *ngIf="loading">
+    <div class="card flex justify-content-center" >
+      <p-button label="Insert" icon="pi pi-check" (click)="insertPeople()"></p-button>
+    </div>
+  </section>
+  <!-- Table -->
+  <section class="size-table">
+    <force-app-table
+      [tableData]="result"
+      [loading]="loading"
+      (openAddEditDialog)="showDialog($event)"
+      (openDelDialog)="delDialog($event)"
+    ></force-app-table>
+  </section>
+  <!-- modals remove and create component -->
+  <force-app-modal-add-edit
+    [visible]="visibleEdit"
+    [editResult]="editResult"
+    (closeMd)="closeDialog($event)"
+  ></force-app-modal-add-edit>
+  <!-- delte modal -->
+  <force-app-modal-del
+    [visible]="visibleDel"
+    [deltResult]="deltResult"
+    (closeMd)="closeDialog($event)"
+  ></force-app-modal-del>
+</main>

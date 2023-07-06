@@ -1,18 +1,14 @@
+import { StarWarsModule } from '@force-app/star-wars';
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-import { RouterModule } from '@angular/router';
 import { AppComponent } from './app.component';
-import { appRoutes } from './app.routes';
 import { NxWelcomeComponent } from './nx-welcome.component';
-import { StarWarsModule } from '@force-app/star-wars';
+import { ButtonModule } from 'primeng/button';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 @NgModule({
   declarations: [AppComponent, NxWelcomeComponent],
-  imports: [
-    BrowserModule,
-    StarWarsModule,
-    RouterModule.forRoot(appRoutes, { initialNavigation: 'enabledBlocking' }),
-  ],
+  imports: [BrowserModule, StarWarsModule, ButtonModule, BrowserAnimationsModule],
   providers: [],
   bootstrap: [AppComponent],
 })

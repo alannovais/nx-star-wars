@@ -1,0 +1,28 @@
+@import 'primeng/resources/themes/lara-light-blue/theme.css';
+@import 'primeng/resources/primeng.css';
+@import 'primeicons/primeicons.css';
+
+body {
+  font-family: var(--font-family);
+}
+
+.size-table {
+  width: 90rem;
+  align-self: center;
+}
+
+.organize-items {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+:host ::ng-deep .p-button {
+  height: 2.2rem;
+}
+
+.insert-button-position {
+    display: flex;
+    justify-content: end;
+    margin-bottom: 1rem;
+}

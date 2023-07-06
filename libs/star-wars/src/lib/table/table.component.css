@@ -1,0 +1,12 @@
+.organize-actions {
+  display: flex;
+  justify-content: space-evenly;
+}
+
+.spin-load {
+  display: flex;
+  justify-content: center;
+  position: relative;
+  top: 20rem;
+  right: 3rem;
+}

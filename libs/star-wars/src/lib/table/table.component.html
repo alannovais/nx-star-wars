@@ -1,0 +1,44 @@
+<div *ngIf="!loading; else loadTable">
+  <div
+    class="spin-load"
+  >
+    <i class="pi pi-spin pi-spinner"></i>
+  </div>
+</div>
+<ng-template #loadTable>
+  <p-table [value]="tableData" [tableStyle]="{ 'min-width': '30rem' }">
+    <ng-template pTemplate="header">
+      <tr>
+        <th>Name</th>
+        <th>mass</th>
+        <th>gender</th>
+        <th>created</th>
+        <th>edited</th>
+        <th>Actions</th>
+      </tr>
+    </ng-template>
+    <ng-template pTemplate="body" let-product>
+      <tr>
+        <td>{{ product.name }}</td>
+        <td>{{ product.mass }}</td>
+        <td>{{ product.gender }}</td>
+        <td>{{ product.created }}</td>
+        <td>{{ product.edited }}</td>
+        <td>
+          <div class="organize-actions">
+            <i
+              class="pi pi-pencil"
+              (click)="showDialog(product)"
+              style="color: #708090"
+            ></i>
+            <i
+              class="pi pi-trash"
+              (click)="delDialog(product)"
+              style="color: #708090"
+            ></i>
+          </div>
+        </td>
+      </tr>
+    </ng-template>
+  </p-table>
+</ng-template>
