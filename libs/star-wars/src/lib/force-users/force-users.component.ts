@@ -1,3 +1,5 @@
+import { StarWarsInterface } from './../../../../../apps/r2d2/src/interfaces/star-wars.interface';
+import { StarWarsStore } from './../../../../../apps/r2d2/src/state/starwars.state';
 import { Component, OnInit } from '@angular/core';
 import { ApiStarwarsService } from './../api-starwars.service';
 
@@ -5,7 +7,7 @@ import { ApiStarwarsService } from './../api-starwars.service';
   selector: 'force-app-force-users',
   templateUrl: './force-users.component.html',
   styleUrls: ['./force-users.component.css'],
-  providers: [ApiStarwarsService],
+  providers: [ApiStarwarsService, StarWarsStore],
 })
 export class ForceUsersComponent implements OnInit {
   result: any = [];
@@ -16,14 +18,34 @@ export class ForceUsersComponent implements OnInit {
   buttonPrevious = '';
   visibleEdit = false;
   visibleDel = false;
+  teste$ = this.starWarsStore.results$;
+  valueTeste: StarWarsInterface = {
+    count: 0,
+    next: '',
+    previous: '',
+    results: [{name: 'Alan', mass: 90, gender: 'male'}],
+  };
 
-  constructor(private apiStarwarsService: ApiStarwarsService) {}
+  valueTeste2: StarWarsInterface = {
+    count: 0,
+    next: '',
+    previous: '',
+    results: [{name: 'Avany', mass: 63, gender: 'famale'}],
+  };
+
+  constructor(
+    private apiStarwarsService: ApiStarwarsService,
+    private starWarsStore: StarWarsStore
+  ) {}
 
   ngOnInit() {
+    this.starWarsStore.addCharacter(this.valueTeste);
     this.loadDatas();
   }
 
   loadDatas() {
+    this.teste$.subscribe(e => console.log(e));
+    this.starWarsStore.updateCharacter(this.valueTeste2);
     this.apiStarwarsService.getAllPeople().subscribe((object: any) => {
       this.loading = !this.loading;
       console.log(object);
@@ -34,6 +56,8 @@ export class ForceUsersComponent implements OnInit {
   }
 
   insertPeople() {
+    console.log(this.teste$);
+
     this.editResult = {};
     this.visibleEdit = !this.visibleEdit;
   }
@@ -51,5 +75,4 @@ export class ForceUsersComponent implements OnInit {
   closeDialog(data: any) {
     this.visibleEdit = this.visibleDel = data;
   }
-
 }

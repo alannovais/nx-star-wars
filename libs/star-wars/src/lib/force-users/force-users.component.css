@@ -22,7 +22,7 @@ body {
 }
 
 .insert-button-position {
-    display: flex;
-    justify-content: end;
-    margin-bottom: 1rem;
+  display: flex;
+  justify-content: end;
+  margin-bottom: 1rem;
 }

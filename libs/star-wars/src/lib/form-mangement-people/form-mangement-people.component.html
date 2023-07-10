@@ -1,4 +1,14 @@
-<span class="p-float-label">
-  <input type="text" pInputText formControlName="text" />
-  <label htmlFor="username">Username</label>
-</span>
+<section [formGroup]="formGroup" class="form-organizer">
+  <span class="p-float-label">
+    <input type="text" pInputText formControlName="name" />
+    <label htmlFor="name">Name</label>
+  </span>
+  <span class="p-float-label">
+    <input pInputText pKeyFilter="int" formControlName="mass" />
+    <label htmlFor="mass">Mass</label>
+  </span>
+  <span class="p-float-label">
+    <input type="text" pInputText formControlName="gender" />
+    <label htmlFor="gender">Gender</label>
+  </span>
+</section>

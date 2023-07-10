@@ -8,10 +8,9 @@
         <span class="text-xl font-bold">Add character</span>
       </ng-template>
     </ng-template>
-    <p>
-      <force-app-form-mangement-people></force-app-form-mangement-people>
-      {{ editResult?.name }}
-    </p>
+    <div style="height: 20vh;">
+      <force-app-form-mangement-people [data]="editResult"></force-app-form-mangement-people>
+    </div>
     <ng-template pTemplate="footer">
       <p-button
         icon="pi pi-check"

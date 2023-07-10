@@ -1,15 +1,16 @@
+import { ComponentStore } from '@ngrx/component-store';
 import { StarWarsModule } from '@force-app/star-wars';
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-import { AppComponent } from './app.component';
-import { NxWelcomeComponent } from './nx-welcome.component';
+import { R2d2AppComponent } from './app.component';
 import { ButtonModule } from 'primeng/button';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 @NgModule({
-  declarations: [AppComponent, NxWelcomeComponent],
+  declarations: [R2d2AppComponent],
   imports: [BrowserModule, StarWarsModule, ButtonModule, BrowserAnimationsModule],
-  providers: [],
-  bootstrap: [AppComponent],
+  providers: [ComponentStore],
+  bootstrap: [R2d2AppComponent],
+  exports: [R2d2AppComponent]
 })
-export class AppModule {}
+export class R2d2AppModule {}

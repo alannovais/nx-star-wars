@@ -2,6 +2,7 @@
   <section class="insert-button-position" *ngIf="loading">
     <div class="card flex justify-content-center" >
       <p-button label="Insert" icon="pi pi-check" (click)="insertPeople()"></p-button>
+      <div *ngFor="let r of teste$ | async">{{ r.name }}</div>
     </div>
   </section>
   <!-- Table -->

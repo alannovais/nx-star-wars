@@ -10,6 +10,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { TableModule } from 'primeng/table';
 import { DialogModule } from 'primeng/dialog';
 import { InputTextModule } from 'primeng/inputtext';
+import { KeyFilterModule } from 'primeng/keyfilter';
 
 import { TableComponent } from './table/table.component';
 import { ModalDelComponent } from './modal-del/modal-del.component';
@@ -26,6 +27,7 @@ import { FormMangementPeopleComponent } from './form-mangement-people/form-mange
     FormsModule,
     ReactiveFormsModule,
     InputTextModule,
+    KeyFilterModule,
   ],
   declarations: [
     ForceUsersComponent,
