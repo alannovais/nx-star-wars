@@ -1,7 +1,11 @@
-import { find, findIndex, map, toArray } from 'rxjs/operators';
+import { Store } from '@ngrx/store';
+import { map } from 'rxjs/operators';
 import { Component, OnInit } from '@angular/core';
 import { Persons } from '../../interfaces/persons/persons.interface';
-import { StarWarsStore } from './../../state/starwars.state';
+import { PersonsStore } from '../component-store/persons.state';
+import { User } from '../../interfaces/user/user.interface';
+import { listUser } from '../../state/user/user.selectors';
+import { loginUser } from '../../state/user/user.action';
 
 @Component({
   selector: 'force-app-persons',
@@ -17,8 +21,8 @@ export class PersonsComponent implements OnInit {
   buttonPrevious = '';
   visibleEdit = false;
   visibleDel = false;
-  dataTable$ = this.starWarsStore.results$;
-  // starWarsState$ = this.starWarsStore.starWrasState$;
+  dataTable$ = this.personsStore.results$;
+  // starWarsState$ = this.personsStore.starWrasState$;
   person: Persons = {
     name: '',
     mass: 0,
@@ -28,10 +32,24 @@ export class PersonsComponent implements OnInit {
   };
   id = 0;
 
-  constructor(private starWarsStore: StarWarsStore) {}
+  user: User = {
+    id: 1,
+    name: 'Alan',
+    login: 'anovais',
+    password: '123',
+    actived: true,
+  };
 
+  constructor(private personsStore: PersonsStore, private store: Store) {
+  }
+  
   ngOnInit() {
     this.loadDatas();
+    console.log(this.store.select(listUser));
+    setTimeout(() => {
+      this.store.dispatch(loginUser(this.user))
+      console.log(this.store.select(listUser));
+    }, 5000);
   }
 
   loadDatas() {
@@ -77,12 +95,12 @@ export class PersonsComponent implements OnInit {
   closeDialog(data: any) {
     this.visibleEdit = this.visibleDel = data;
 
-    if(this.deltResult?.name) {
+    if (this.deltResult?.name) {
       this.person = this.deltResult;
       this.person.id = this.id;
-      this.starWarsStore.deleteCharacter(this.person);
+      this.personsStore.deleteCharacter(this.person);
     }
-    
+
     this.id = 0;
     this.deltResult = {};
   }
@@ -93,10 +111,10 @@ export class PersonsComponent implements OnInit {
     if (this.editResult?.name) {
       this.person.created = this.editResult.created;
       this.person.edited = new Date().toString();
-      this.starWarsStore.updateCharacter(this.person);
+      this.personsStore.updateCharacter(this.person);
     } else {
       this.person.created = new Date().toString();
-      this.starWarsStore.addCharacter(this.person);
+      this.personsStore.addCharacter(this.person);
     }
     this.id = 0;
   }

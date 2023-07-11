@@ -1,11 +1,11 @@
 import { HttpErrorResponse } from '@angular/common/http';
-import { ApiStarwarsService } from '../app/api/api-starwars.service';
+import { ApiStarwarsService } from '../api/api-starwars.service';
 import { Injectable } from '@angular/core';
 import { ComponentStore, tapResponse } from '@ngrx/component-store';
 import { switchMap } from 'rxjs';
-import { Persons } from '../interfaces/persons/persons.interface';
+import { Persons } from '../../interfaces/persons/persons.interface';
 
-export interface StarWarsState {
+export interface PersosnState {
   loading: boolean;
   count: number;
   next: string | null;
@@ -13,7 +13,7 @@ export interface StarWarsState {
   results: Array<Persons>;
 }
 
-export const INITIALSTATE: StarWarsState = {
+export const INITIALSTATE: PersosnState = {
   loading: false,
   count: 0,
   next: '',
@@ -22,7 +22,7 @@ export const INITIALSTATE: StarWarsState = {
 };
 
 @Injectable()
-export class StarWarsStore extends ComponentStore<StarWarsState> {
+export class PersonsStore extends ComponentStore<PersosnState> {
   //   starWrasState$ = this.select((state) => {
   //     state;
   //   });
@@ -37,7 +37,7 @@ export class StarWarsStore extends ComponentStore<StarWarsState> {
     super(INITIALSTATE);
   }
 
-   selectPerson = this.effect<StarWarsState>((trigger$) =>
+  selectPerson = this.effect<PersosnState>((trigger$) =>
     trigger$.pipe(
       switchMap(() =>
         this.apiStarWarsService.getAllPeople().pipe(
@@ -67,7 +67,7 @@ export class StarWarsStore extends ComponentStore<StarWarsState> {
   }
 
   updateCharacter = this.updater(
-    (state: StarWarsState, updateValue: Persons) => {
+    (state: PersosnState, updateValue: Persons) => {
       return {
         ...state,
         results: state.results.map((value, index) => {
@@ -82,10 +82,12 @@ export class StarWarsStore extends ComponentStore<StarWarsState> {
   );
 
   deleteCharacter = this.updater(
-    (state: StarWarsState, deleteValue: Persons) => {
+    (state: PersosnState, deleteValue: Persons) => {
       return {
         ...state,
-        results: state.results.filter((value, index) => !(index === deleteValue.id)),
+        results: state.results.filter(
+          (value, index) => !(index === deleteValue.id)
+        ),
       };
     }
   );

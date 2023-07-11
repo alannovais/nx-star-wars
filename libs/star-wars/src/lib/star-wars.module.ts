@@ -14,7 +14,7 @@ import { KeyFilterModule } from 'primeng/keyfilter';
 import { TableComponent } from './table/table.component';
 import { ModalDelComponent } from './modal-del/modal-del.component';
 import { FormMangementPeopleComponent } from './form-mangement-people/form-mangement-people.component';
-import { StarWarsStore } from 'apps/r2d2/src/state/starwars.state';
+import { PersonsStore } from 'apps/r2d2/src/app/component-store/persons.state';
 
 @NgModule({
   imports: [
@@ -35,7 +35,7 @@ import { StarWarsStore } from 'apps/r2d2/src/state/starwars.state';
     ModalDelComponent,
     FormMangementPeopleComponent,
   ],
-  providers: [StarWarsStore],
+  providers: [PersonsStore],
   exports: [TableComponent, ModalAddEditComponent, ModalDelComponent],
 })
 export class StarWarsModule {}

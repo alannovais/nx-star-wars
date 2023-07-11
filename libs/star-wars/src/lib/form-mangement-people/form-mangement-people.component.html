@@ -1,15 +1,24 @@
-<section [formGroup]="formGroup" class="form-organizer">
-  <span class="p-float-label">
-    <input type="text" pInputText formControlName="name" />
-    <label htmlFor="name">Name</label>
-  </span>
-  <span class="p-float-label">
-    <input pInputText pKeyFilter="int" formControlName="mass" />
-    <label htmlFor="mass">Mass</label>
-  </span>
-  <span class="p-float-label">
-    <input type="text" pInputText formControlName="gender" />
-    <label htmlFor="gender">Gender</label>
-  </span>
-  <p-button label="Insert" icon="pi pi-check" (click)="confirmOption()"></p-button>
+<section [formGroup]="formGroup">
+  <div class="form-organizer-row">
+    <span class="p-float-label">
+      <input type="text" pInputText formControlName="name" />
+      <label htmlFor="name">Name</label>
+    </span>
+    <span class="p-float-label">
+      <input pInputText pKeyFilter="int" formControlName="mass" />
+      <label htmlFor="mass">Mass</label>
+    </span>
+    <span class="p-float-label">
+      <input type="text" pInputText formControlName="gender" />
+      <label htmlFor="gender">Gender</label>
+    </span>
+  </div>
+
+  <div class="space-form">
+    <p-button
+      label="Insert"
+      icon="pi pi-check"
+      (click)="confirmOption()"
+    ></p-button>
+  </div>
 </section>
