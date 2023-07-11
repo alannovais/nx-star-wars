@@ -1,4 +1,4 @@
-import { Component, Input, OnChanges, SimpleChanges } from '@angular/core';
+import { Component, Input, OnChanges, SimpleChanges, Output, EventEmitter } from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
 
 @Component({
@@ -8,6 +8,8 @@ import { FormControl, FormGroup } from '@angular/forms';
 })
 export class FormMangementPeopleComponent implements OnChanges {
   @Input() data: any;
+  @Output() confirmOptionModal = new EventEmitter<any>();
+  
   formGroup = new FormGroup({
     name: new FormControl<string | null>(null),
     mass: new FormControl<number | null>(null),
@@ -23,6 +25,6 @@ export class FormMangementPeopleComponent implements OnChanges {
   }
 
   confirmOption() {
-    console.log(this.formGroup?.value);
+    this.confirmOptionModal.emit(this.formGroup.value);
   }
 }

@@ -9,10 +9,15 @@ export class ModalAddEditComponent {
   @Input() visible!: boolean;
   @Input() editResult: any;
   @Output() closeMd: EventEmitter<any> = new EventEmitter();
+  @Output() confirmOptionModal: EventEmitter<any> = new EventEmitter();
   // @Output() 
 
   closeModal() {
     this.closeMd.emit(false);
+  }
+
+  confirmOption(event: any) {
+    this.confirmOptionModal.emit(event);
   }
 
 }

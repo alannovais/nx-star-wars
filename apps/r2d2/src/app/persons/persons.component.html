@@ -1,14 +1,17 @@
 <main class="organize-items">
   <section class="insert-button-position" *ngIf="loading">
-    <div class="card flex justify-content-center" >
-      <p-button label="Insert" icon="pi pi-check" (click)="insertPeople()"></p-button>
-      <div *ngFor="let r of teste$ | async">{{ r.name }}</div>
+    <div class="card flex justify-content-center">
+      <p-button
+        label="Insert"
+        icon="pi pi-check"
+        (click)="insertPeople()"
+      ></p-button>
     </div>
   </section>
   <!-- Table -->
   <section class="size-table">
     <force-app-table
-      [tableData]="result"
+      [tableData]="dataTable$ | async"
       [loading]="loading"
       (openAddEditDialog)="showDialog($event)"
       (openDelDialog)="delDialog($event)"
@@ -19,6 +22,7 @@
     [visible]="visibleEdit"
     [editResult]="editResult"
     (closeMd)="closeDialog($event)"
+    (confirmOptionModal)="confirmOption($event)"
   ></force-app-modal-add-edit>
   <!-- delte modal -->
   <force-app-modal-del

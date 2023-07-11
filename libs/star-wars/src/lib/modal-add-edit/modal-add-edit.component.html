@@ -8,8 +8,11 @@
         <span class="text-xl font-bold">Add character</span>
       </ng-template>
     </ng-template>
-    <div style="height: 20vh;">
-      <force-app-form-mangement-people [data]="editResult"></force-app-form-mangement-people>
+    <div style="height: 20vh">
+      <force-app-form-mangement-people
+        [data]="editResult"
+        (confirmOptionModal)="confirmOption($event)"
+      ></force-app-form-mangement-people>
     </div>
     <ng-template pTemplate="footer">
       <p-button

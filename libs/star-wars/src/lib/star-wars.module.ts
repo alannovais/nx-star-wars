@@ -2,7 +2,6 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { HttpClientModule } from '@angular/common/http';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { ForceUsersComponent } from './force-users/force-users.component';
 import { ModalAddEditComponent } from './modal-add-edit/modal-add-edit.component';
 
 import { ButtonModule } from 'primeng/button';
@@ -15,6 +14,7 @@ import { KeyFilterModule } from 'primeng/keyfilter';
 import { TableComponent } from './table/table.component';
 import { ModalDelComponent } from './modal-del/modal-del.component';
 import { FormMangementPeopleComponent } from './form-mangement-people/form-mangement-people.component';
+import { StarWarsStore } from 'apps/r2d2/src/state/starwars.state';
 
 @NgModule({
   imports: [
@@ -30,12 +30,12 @@ import { FormMangementPeopleComponent } from './form-mangement-people/form-mange
     KeyFilterModule,
   ],
   declarations: [
-    ForceUsersComponent,
     TableComponent,
     ModalAddEditComponent,
     ModalDelComponent,
     FormMangementPeopleComponent,
   ],
-  exports: [ForceUsersComponent],
+  providers: [StarWarsStore],
+  exports: [TableComponent, ModalAddEditComponent, ModalDelComponent],
 })
 export class StarWarsModule {}
