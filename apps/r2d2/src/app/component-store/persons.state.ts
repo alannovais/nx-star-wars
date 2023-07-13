@@ -23,9 +23,6 @@ export const INITIALSTATE: PersosnState = {
 
 @Injectable()
 export class PersonsStore extends ComponentStore<PersosnState> {
-  //   starWrasState$ = this.select((state) => {
-  //     state;
-  //   });
   results$ = this.select((state) => {
     if (state.results.length === 0) this.selectPerson(state);
     return state.results;

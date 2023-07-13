@@ -1,5 +1,8 @@
 <main class="organize-items">
   <section class="insert-button-position" *ngIf="loading">
+    <div style="margin-left: 1vw;">
+      <span>Welcome, {{ name$ | async }}</span>
+    </div>
     <div class="card flex justify-content-center">
       <p-button
         label="Insert"

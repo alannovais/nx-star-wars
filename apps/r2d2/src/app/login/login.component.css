@@ -1,0 +1,24 @@
+.form-organizer-row {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  align-items: center;
+}
+
+.login-form {
+  height: 90vh;
+  justify-content: center;
+  display: flex;
+  flex-direction: column;
+}
+
+.size-color-button {
+  background-color: blue;
+  color: white;
+  border-radius: 7px;
+  width: 13rem;
+  height: 2rem;
+  border-color: white;
+  box-shadow: 20px;
+  font-size: 18px;
+}

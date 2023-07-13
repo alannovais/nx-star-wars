@@ -3,9 +3,7 @@ import { map } from 'rxjs/operators';
 import { Component, OnInit } from '@angular/core';
 import { Persons } from '../../interfaces/persons/persons.interface';
 import { PersonsStore } from '../component-store/persons.state';
-import { User } from '../../interfaces/user/user.interface';
-import { listUser } from '../../state/user/user.selectors';
-import { loginUser } from '../../state/user/user.action';
+import { userLoged } from '../../state/user/user.selectors';
 
 @Component({
   selector: 'force-app-persons',
@@ -22,7 +20,6 @@ export class PersonsComponent implements OnInit {
   visibleEdit = false;
   visibleDel = false;
   dataTable$ = this.personsStore.results$;
-  // starWarsState$ = this.personsStore.starWrasState$;
   person: Persons = {
     name: '',
     mass: 0,
@@ -31,25 +28,12 @@ export class PersonsComponent implements OnInit {
     edited: null,
   };
   id = 0;
+  name$ = this.store.select(userLoged);
 
-  user: User = {
-    id: 1,
-    name: 'Alan',
-    login: 'anovais',
-    password: '123',
-    actived: true,
-  };
+  constructor(private personsStore: PersonsStore, private store: Store) {}
 
-  constructor(private personsStore: PersonsStore, private store: Store) {
-  }
-  
   ngOnInit() {
     this.loadDatas();
-    console.log(this.store.select(listUser));
-    setTimeout(() => {
-      this.store.dispatch(loginUser(this.user))
-      console.log(this.store.select(listUser));
-    }, 5000);
   }
 
   loadDatas() {
@@ -62,8 +46,8 @@ export class PersonsComponent implements OnInit {
 
   setIndexToWork() {
     const valueArray = this.dataTable$.pipe(
-      map((e: any): void => {
-        e.forEach((element: any, index: number): void | number => {
+      map((e: Persons[]): void => {
+        e.forEach((element: Persons, index: number): void | number => {
           if (
             this.editResult?.name === element.name ||
             this.deltResult?.name === element.name
@@ -86,13 +70,13 @@ export class PersonsComponent implements OnInit {
     this.setIndexToWork();
   }
 
-  delDialog(data: any) {
+  delDialog(data: Persons) {
     this.visibleDel = !this.visibleDel;
     if (this.visibleDel) this.deltResult = data;
     this.setIndexToWork();
   }
 
-  closeDialog(data: any) {
+  closeDialog(data: boolean) {
     this.visibleEdit = this.visibleDel = data;
 
     if (this.deltResult?.name) {
@@ -105,7 +89,7 @@ export class PersonsComponent implements OnInit {
     this.deltResult = {};
   }
 
-  confirmOption(data: any) {
+  confirmOption(data: Persons) {
     this.person = data;
     this.person.id = this.id;
     if (this.editResult?.name) {

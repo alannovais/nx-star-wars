@@ -1,14 +1,10 @@
-@import 'primeng/resources/themes/lara-light-blue/theme.css';
-@import 'primeng/resources/primeng.css';
-@import 'primeicons/primeicons.css';
-
-body {
-  font-family: var(--font-family);
-}
-
 .size-table {
   width: 90rem;
   align-self: center;
+  height: 35rem;
+  overflow-y: auto;
+  position: relative;
+  top: 3vh;
 }
 
 .organize-items {
@@ -23,6 +19,26 @@ body {
 
 .insert-button-position {
   display: flex;
-  justify-content: end;
+  justify-content: space-between;
   margin-bottom: 1rem;
+}
+
+/* width */
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+  background: rgb(131, 127, 135);
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+  background: #357cee;
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+  background: rgb(131, 127, 135);
 }

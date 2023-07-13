@@ -1,5 +1,5 @@
-import { Persons } from "../interfaces/persons/persons.interface";
+import { User } from "../interfaces/user.interface.ts/user.interface";
 
 export interface AppState {
-    readonly persons: Persons[];
+  readonly users: User[];
 }

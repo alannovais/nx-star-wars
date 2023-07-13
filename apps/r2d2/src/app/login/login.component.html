@@ -1,0 +1,17 @@
+<main style="height: 80hv">
+  <section [formGroup]="loginGroup" class="login-form">
+    <div class="form-organizer-row">
+      <span class="p-float-label" style="margin-bottom: 3.5vh">
+        <input type="text" pInputText formControlName="login" />
+        <label htmlFor="name">Login</label>
+      </span>
+      <span class="p-float-label" style="margin-bottom: 3.5vh">
+        <p-password [feedback]="false" formControlName="password"> </p-password>
+        <label htmlFor="mass">Password</label>
+      </span>
+      <div style="margin-bottom: 3.5vh">
+        <button class="size-color-button" (click)="signIn()">Sign In</button>
+      </div>
+    </div>
+  </section>
+</main>

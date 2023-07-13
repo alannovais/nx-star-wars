@@ -1,8 +1,16 @@
 import { createReducer, on } from '@ngrx/store';
-import { User } from '../../interfaces/user/user.interface';
+import { User } from '../../interfaces/user.interface.ts/user.interface';
 import { createUser, loginUser, logoffUser } from './user.action';
 
-export const initialState: User[] = [];
+export const initialState: User[] = [
+  {
+    id: 1,
+    name: 'Alan',
+    login: 'anovais',
+    password: '123',
+    actived: false,
+  },
+];
 
 export const userReducer = createReducer(
   initialState,
@@ -12,26 +20,20 @@ export const userReducer = createReducer(
   }),
 
   on(loginUser, (state, user: User): User[] => {
-    const array: User[] = [];
-    state.forEach((data) => {
-      if (user.id === data.id) {
-        array.push(user);
-      } else {
-        array.push(data);
+    return state.map((data) => {
+      if (data.login === user.login && data.password === user.password) {
+        return { ...data, actived: true };
       }
+      return data;
     });
-    return array;
   }),
 
   on(logoffUser, (state, user: User): User[] => {
-    const array: User[] = [];
-    state.forEach((data) => {
-      if (user.id === data.id) {
-        array.push(user);
-      } else {
-        array.push(data);
+    return state.map((data) => {
+      if (data.login === user.login && data.password === user.password) {
+        return { ...data, actived: false };
       }
+      return data;
     });
-    return array;
   })
 );
