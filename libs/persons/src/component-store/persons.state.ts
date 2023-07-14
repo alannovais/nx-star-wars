@@ -54,14 +54,12 @@ export class PersonsStore extends ComponentStore<PersosnState> {
     )
   );
 
-  addCharacter(data: Persons) {
-    this.setState((state) => {
-      return {
-        ...state,
-        results: [...state.results, data],
-      };
-    });
-  }
+  addCharacter = this.updater((state: PersosnState, data: Persons) => {
+    return {
+      ...state,
+      results: [...state.results, data],
+    };
+  });
 
   updateCharacter = this.updater(
     (state: PersosnState, updateValue: Persons) => {

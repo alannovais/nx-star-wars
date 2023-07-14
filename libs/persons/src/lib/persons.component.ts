@@ -102,5 +102,6 @@ export class PersonsComponent implements OnInit {
       this.personsStore.addCharacter(this.person);
     }
     this.id = 0;
+    this.visibleEdit = !this.visibleEdit;
   }
 }
