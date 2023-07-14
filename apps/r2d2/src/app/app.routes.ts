@@ -1,11 +1,23 @@
 import { Route } from '@angular/router';
-import { LoginComponent } from './login/login.component';
-import { PersonsComponent } from './persons/persons.component';
 
-export const appRoutes: Route[] = [{
+export const appRoutes: Route[] = [
+  {
     path: 'login',
-    component: LoginComponent
-}, {
+    loadChildren: () =>
+      import('libs/login/src/lib/login.module').then(
+        (module) => module.LoginModule
+      ),
+  },
+  {
     path: 'persons',
-    component: PersonsComponent
-}];
+    loadChildren: () =>
+      import('libs/persons/src/lib/persons.module').then(
+        (module) => module.PersonsModule
+      ),
+  },
+  {
+    path: '',
+    redirectTo: '',
+    pathMatch: 'full',
+  },
+];

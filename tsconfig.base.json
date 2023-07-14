@@ -16,6 +16,8 @@
     "baseUrl": ".",
     "paths": {
       "@force-app/common-ui": ["libs/common-ui/src/index.ts"],
+      "@force-app/login": ["libs/login/src/index.ts"],
+      "@force-app/persons": ["libs/persons/src/index.ts"],
       "@force-app/star-wars": ["libs/star-wars/src/index.ts"]
     }
   },

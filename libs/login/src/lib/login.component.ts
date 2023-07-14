@@ -1,10 +1,10 @@
 import { Router } from '@angular/router';
 import { Store } from '@ngrx/store';
 import { Component } from '@angular/core';
-import { User } from '../../interfaces/user.interface.ts/user.interface';
-import { loginUser } from '../../state/user/user.action';
 import { FormControl, FormGroup } from '@angular/forms';
-import { listUser } from '../../state/user/user.selectors';
+import { User } from 'libs/star-wars/src/interfaces/user/user.interface';
+import { loginUser } from 'libs/star-wars/src/state/user/user.action';
+import { listUser } from 'libs/star-wars/src/state/user/user.selectors';
 
 @Component({
   selector: 'force-app-login',
@@ -12,14 +12,6 @@ import { listUser } from '../../state/user/user.selectors';
   styleUrls: ['./login.component.css'],
 })
 export class LoginComponent {
-  user: User = {
-    id: 1,
-    name: 'Alan',
-    login: 'anovais',
-    password: '123',
-    actived: false,
-  };
-
   loginGroup = new FormGroup({
     login: new FormControl<string | null>(null),
     password: new FormControl<string | null>(null),
@@ -51,6 +43,7 @@ export class LoginComponent {
     };
     this.store.dispatch(loginUser(userActive));
     this.store.select(listUser).subscribe((e: any) => {
+      console.log(e);
       e.forEach((element: any) => {
         if (element.actived) {
           this.router.navigate(['/persons']);

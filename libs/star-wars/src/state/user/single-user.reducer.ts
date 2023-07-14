@@ -1,5 +1,5 @@
 import { createReducer, on } from '@ngrx/store';
-import { User } from '../../interfaces/user.interface.ts/user.interface';
+import { User } from '../../interfaces/user/user.interface';
 import { loginUser } from './user.action';
 
 export const initialState: User = {

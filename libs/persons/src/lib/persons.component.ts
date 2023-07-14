@@ -1,9 +1,10 @@
+import { userLoged } from './../../../star-wars/src/state/user/user.selectors';
+import { Persons } from './../../../star-wars/src/interfaces/persons/persons.interface';
+
 import { Store } from '@ngrx/store';
 import { map } from 'rxjs/operators';
 import { Component, OnInit } from '@angular/core';
-import { Persons } from '../../interfaces/persons/persons.interface';
 import { PersonsStore } from '../component-store/persons.state';
-import { userLoged } from '../../state/user/user.selectors';
 
 @Component({
   selector: 'force-app-persons',
@@ -70,13 +71,13 @@ export class PersonsComponent implements OnInit {
     this.setIndexToWork();
   }
 
-  delDialog(data: Persons) {
+  delDialog(data: any) {
     this.visibleDel = !this.visibleDel;
     if (this.visibleDel) this.deltResult = data;
     this.setIndexToWork();
   }
 
-  closeDialog(data: boolean) {
+  closeDialog(data: any) {
     this.visibleEdit = this.visibleDel = data;
 
     if (this.deltResult?.name) {
@@ -89,7 +90,7 @@ export class PersonsComponent implements OnInit {
     this.deltResult = {};
   }
 
-  confirmOption(data: Persons) {
+  confirmOption(data: any) {
     this.person = data;
     this.person.id = this.id;
     if (this.editResult?.name) {
