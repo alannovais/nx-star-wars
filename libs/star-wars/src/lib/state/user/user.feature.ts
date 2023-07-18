@@ -10,6 +10,13 @@ export const initialState: User[] = [
     password: '123',
     actived: false,
   },
+  {
+    id: 2,
+    name: 'Avany',
+    login: 'any',
+    password: '123',
+    actived: false,
+  },
 ];
 
 export const UserListFeature = createFeature({
@@ -21,14 +28,13 @@ export const UserListFeature = createFeature({
       return [...state, user];
     }),
 
-    on(UserAcations.userLoginSystem, (state, user: User): User[] => {
+    on(UserAcations.userLoginSystem, (state): User[] => {
       return state.map((data) => {
-        if (data.login === user.login && data.password === user.password) {
-          return { ...data, actived: true };
-        }
-        return data;
+        return { ...data, actived: false };
       });
     }),
+
+    on(UserAcations.loginSuccess, (state, { user }): User[] => user),
 
     on(UserAcations.userLogedSystem, (state, user: User): User[] => {
       return state.map((data) => {
@@ -41,18 +47,10 @@ export const UserListFeature = createFeature({
   ),
   extraSelectors: ({ selectUserListState }) => ({
     nameUserLoged: createSelector(selectUserListState, filterUserFunction),
-    nameTeste: createSelector(selectUserListState, testeFilterUserFunction),
   }),
 });
 
-function filterUserFunction(value: User[]): User[] {
-  return value.filter((data: User) => {
-    if (data.actived === true) return data;
-    else return { ...initialState, name: '' };
-  });
-}
-
-function testeFilterUserFunction(value: User[]): any {
+function filterUserFunction(value: User[]): any {
   let nameUser = '';
   value.find((data: User) => {
     if (data.actived === true) nameUser = data.name;
@@ -62,6 +60,5 @@ function testeFilterUserFunction(value: User[]): any {
 
 export const ListUserViewModel = createSelector({
   listUser: UserListFeature.selectUserListState,
-  loged: UserListFeature.nameUserLoged,
-  teste: UserListFeature.nameTeste,
+  logged: UserListFeature.nameUserLoged,
 });

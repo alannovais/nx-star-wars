@@ -2,8 +2,10 @@ import { HttpErrorResponse } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { ComponentStore, tapResponse } from '@ngrx/component-store';
 import { switchMap } from 'rxjs';
-import { Persons } from '../../../star-wars/src/interfaces/persons/persons.interface';
 import { ApiStarwarsService } from '../api/api-starwars.service';
+import { Persons } from '@force-app/star-wars'
+
+
 
 export interface PersosnState {
   loading: boolean;

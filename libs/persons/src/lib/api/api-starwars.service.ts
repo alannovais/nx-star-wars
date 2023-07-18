@@ -1,6 +1,7 @@
-import { CONSTANTS } from './../../../star-wars/src/constants/urls-consts';
+
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { CONSTANTS } from '@force-app/star-wars';
 
 @Injectable({
   providedIn: 'root',

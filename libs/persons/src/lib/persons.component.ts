@@ -1,11 +1,11 @@
-import { ListUserViewModel } from './../../../star-wars/src/state/user/user.feature';
-import { userLoged } from './../../../star-wars/src/state/user/user.selectors';
-import { Persons } from './../../../star-wars/src/interfaces/persons/persons.interface';
+import { ListUserViewModel } from '@force-app/star-wars';
+import { userLoged } from '@force-app/star-wars';
+import { Persons } from '@force-app/star-wars';
 
 import { Store } from '@ngrx/store';
 import { map } from 'rxjs/operators';
 import { Component, OnInit } from '@angular/core';
-import { PersonsStore } from '../component-store/persons.state';
+import { PersonsStore } from './component-store/persons.state';
 
 @Component({
   selector: 'force-app-persons',
@@ -44,7 +44,7 @@ export class PersonsComponent implements OnInit {
     // );
     this.store
       .select(ListUserViewModel)
-      .subscribe((e) => this.nameFeatureFuction$ = e.teste);
+      .subscribe((e: any) => {this.nameFeatureFuction$ = e.logged; console.log(e)});
   }
 
   loadDatas() {

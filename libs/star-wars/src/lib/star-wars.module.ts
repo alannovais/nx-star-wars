@@ -6,9 +6,10 @@ import { HttpClientModule } from '@angular/common/http';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 import { EffectsModule } from '@ngrx/effects';
-import { userReducer } from '../state/user/user.reducer';
-import { UserEffects } from '../state/user/user.effects';
-import { UserListFeature } from '../state/user/user.feature';
+import { userReducer } from './state/user/user.reducer';
+import { UserListFeature } from './state/user/user.feature';
+import { UserEffects } from './state/user/user.effects';
+
 
 
 @NgModule({
