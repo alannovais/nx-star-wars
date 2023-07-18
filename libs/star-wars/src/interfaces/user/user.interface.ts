@@ -3,5 +3,5 @@ export interface User {
     name: string;
     login: string;
     password: string;
-    actived?: boolean;
+    actived: boolean | undefined;
 }

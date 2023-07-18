@@ -1,3 +1,4 @@
+import { ListUserViewModel } from './../../../star-wars/src/state/user/user.feature';
 import { userLoged } from './../../../star-wars/src/state/user/user.selectors';
 import { Persons } from './../../../star-wars/src/interfaces/persons/persons.interface';
 
@@ -30,11 +31,20 @@ export class PersonsComponent implements OnInit {
   };
   id = 0;
   name$ = this.store.select(userLoged);
+  nameFeatureFuction$ = '';
 
   constructor(private personsStore: PersonsStore, private store: Store) {}
 
   ngOnInit() {
     this.loadDatas();
+    // this.store.select(UserListFeature.nameUserLoged).subscribe((e) =>
+    //   e.map((value) => {
+    //     if (value.actived) this.nameFeatureFuction$ = value.name;
+    //   })
+    // );
+    this.store
+      .select(ListUserViewModel)
+      .subscribe((e) => this.nameFeatureFuction$ = e.teste);
   }
 
   loadDatas() {

@@ -8,6 +8,8 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { EffectsModule } from '@ngrx/effects';
 import { userReducer } from '../state/user/user.reducer';
 import { UserEffects } from '../state/user/user.effects';
+import { UserListFeature } from '../state/user/user.feature';
+
 
 @NgModule({
   imports: [
@@ -15,6 +17,7 @@ import { UserEffects } from '../state/user/user.effects';
     BrowserAnimationsModule,
     HttpClientModule,
     StoreModule.forRoot({ root: userReducer }),
+    StoreModule.forFeature(UserListFeature.name, UserListFeature.reducer),
     EffectsModule.forRoot([UserEffects]),
   ],
   declarations: [],
