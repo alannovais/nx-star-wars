@@ -2,7 +2,11 @@ import { UserAcations } from './user.action';
 import { createFeature, createReducer, on, createSelector } from '@ngrx/store';
 import { User } from '../../interfaces/user/user.interface';
 
-export const initialState: User[] = [
+export interface UserState {
+  users: User[];
+}
+
+const mockUsers: User[] = [
   {
     id: 1,
     name: 'Alan',
@@ -19,30 +23,37 @@ export const initialState: User[] = [
   },
 ];
 
+export const initialUserState: UserState = {
+  users: mockUsers,
+};
+
 export const UserListFeature = createFeature({
   name: 'userList',
   reducer: createReducer(
-    initialState,
+    initialUserState,
 
-    on(UserAcations.createUserForSystem, (state, user: User): User[] => {
-      return [...state, user];
+    on(UserAcations.createUserForSystem, (state, user: User): UserState => {
+      return { ...state, users: [...state.users, user] };
     }),
 
-    on(UserAcations.userLoginSystem, (state): User[] => {
-      return state.map((data) => {
-        return { ...data, actived: false };
-      });
+    on(UserAcations.userLoginSystem, (state): UserState => {
+      return {
+        ...state,
+      };
     }),
 
-    on(UserAcations.loginSuccess, (state, { user }): User[] => user),
+    on(UserAcations.loginSuccess, (state, { users }): UserState => {
+      return {
+        ...state,
+        users: users,
+      };
+    }),
 
-    on(UserAcations.userLogedSystem, (state, user: User): User[] => {
-      return state.map((data) => {
-        if (data.login === user.login && data.password === user.password) {
-          return { ...data, actived: false };
-        }
-        return data;
-      });
+    on(UserAcations.userLogedSystem, (state, { users }): UserState => {
+      return {
+        ...state,
+        users: users,
+      };
     })
   ),
   extraSelectors: ({ selectUserListState }) => ({
@@ -50,9 +61,9 @@ export const UserListFeature = createFeature({
   }),
 });
 
-function filterUserFunction(value: User[]): any {
+function filterUserFunction(value: UserState): string {
   let nameUser = '';
-  value.find((data: User) => {
+  value.users.find((data: User) => {
     if (data.actived === true) nameUser = data.name;
   });
   return nameUser;

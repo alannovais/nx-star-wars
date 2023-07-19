@@ -20,25 +20,5 @@ export const initialState: User[] = [
 export const userReducer = createReducer(
   initialState,
 
-  on(UserAcations.createUserForSystem, (state, user: User): User[] => {
-    return [...state, user];
-  }),
-
-  on(UserAcations.userLoginSystem, (state, user: User): User[] => {
-    return state.map((data) => {
-      if (data.login === user.login && data.password === user.password) {
-        return { ...data, actived: true };
-      }
-      return data;
-    });
-  }),
-
-  on(UserAcations.userLogedSystem, (state, user: User): User[] => {
-    return state.map((data) => {
-      if (data.login === user.login && data.password === user.password) {
-        return { ...data, actived: false };
-      }
-      return data;
-    });
-  })
+  
 );

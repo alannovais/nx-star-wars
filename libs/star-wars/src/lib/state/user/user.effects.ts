@@ -24,7 +24,7 @@ export class UserEffects {
         let updateUser: User[] = [];
         this.store$
           .select(UserListFeature.selectUserListState)
-          .subscribe((e) => (arrayUsers = e.map((f) => f)));
+          .subscribe((e) => (arrayUsers = e.users.map((f) => f)));
         const deepCopy = JSON.parse(JSON.stringify(arrayUsers));
         deepCopy.forEach((result: any) => {
           if (

@@ -6,8 +6,8 @@ export const UserAcations = createActionGroup({
   events: {
     'Create user for system': (user: User) => user,
     'User login system': (user: User) => user,
-    'Login success': (user: User[]) => ({ user }),
-    'User loged system': (user: User) => user,
+    'Login success': (users: User[]) => ({ users }),
+    'User loged system': (users: User[]) => ({ users }),
     'Get user actived': (user: User) => user,
   },
 });
