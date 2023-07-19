@@ -1,5 +1,5 @@
+import { ActivatedRoute } from '@angular/router';
 import { ListUserViewModel } from '@force-app/star-wars';
-import { userLoged } from '@force-app/star-wars';
 import { Persons } from '@force-app/star-wars';
 
 import { Store } from '@ngrx/store';
@@ -21,7 +21,7 @@ export class PersonsComponent implements OnInit {
   buttonPrevious = '';
   visibleEdit = false;
   visibleDel = false;
-  dataTable$ = this.personsStore.results$;
+  dataTable$ = this.personsStore.results$; 
   person: Persons = {
     name: '',
     mass: 0,
@@ -30,29 +30,25 @@ export class PersonsComponent implements OnInit {
     edited: null,
   };
   id = 0;
-  name$ = this.store.select(userLoged);
-  nameFeatureFuction$ = '';
+  nameUser = this.personsStore.results$;
 
-  constructor(private personsStore: PersonsStore, private store: Store) {}
+  constructor(
+    private personsStore: PersonsStore,
+    private store: Store,
+    private route: ActivatedRoute
+  ) {}
 
   ngOnInit() {
     this.loadDatas();
-    // this.store.select(UserListFeature.nameUserLoged).subscribe((e) =>
-    //   e.map((value) => {
-    //     if (value.actived) this.nameFeatureFuction$ = value.name;
-    //   })
-    // );
-    this.store
-      .select(ListUserViewModel)
-      .subscribe((e: any) => {this.nameFeatureFuction$ = e.logged; console.log(e)});
   }
 
   loadDatas() {
-    setTimeout(() => {
-      this.loading = !this.loading;
-    }, 5000);
-    // this.buttonNext = object.next;
-    // this.buttonPrevious = object.previous;
+    this.personsStore.loadPersons(this.route.snapshot.data['persons']);
+    this.loading = this.personsStore.loading$ ? true : false;
+    console.log(this.loading);
+    this.store.select(ListUserViewModel).subscribe((e: any) => {
+      this.nameUser = e.logged;
+    });
   }
 
   setIndexToWork() {

@@ -3,9 +3,7 @@ import { Injectable } from '@angular/core';
 import { ComponentStore, tapResponse } from '@ngrx/component-store';
 import { switchMap } from 'rxjs';
 import { ApiStarwarsService } from '../api/api-starwars.service';
-import { Persons } from '@force-app/star-wars'
-
-
+import { Persons } from '@force-app/star-wars';
 
 export interface PersosnState {
   loading: boolean;
@@ -55,6 +53,17 @@ export class PersonsStore extends ComponentStore<PersosnState> {
       )
     )
   );
+
+  loadPersons = this.updater((state: PersosnState, data: any) => {
+    return {
+      ...state,
+      loading: true,
+      count: data.count,
+      next: data.next,
+      previous: data.previous,
+      results: data.results
+    };
+  });
 
   addCharacter = this.updater((state: PersosnState, data: Persons) => {
     return {

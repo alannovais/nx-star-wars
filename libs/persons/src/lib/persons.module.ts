@@ -5,11 +5,13 @@ import { ButtonModule } from 'primeng/button';
 import { PersonsComponent } from './persons.component';
 import { RouterModule, Routes } from '@angular/router';
 import { PersonsStore } from './component-store/persons.state';
+import { ApiStarWarsResolver } from './resolvers/api-star-wars.resolver';
 
 const routes: Routes = [
   {
     path: '',
     component: PersonsComponent,
+    resolve: { persons: ApiStarWarsResolver },
   },
 ];
 

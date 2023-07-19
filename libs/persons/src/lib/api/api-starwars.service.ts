@@ -9,7 +9,7 @@ import { CONSTANTS } from '@force-app/star-wars';
 export class ApiStarwarsService {
   constructor(private hppt: HttpClient) {}
 
-  getAllPeople() {
+  getAllPeople(): any {
     return this.hppt.get(`${CONSTANTS.URL}/people`);
   }
 }
