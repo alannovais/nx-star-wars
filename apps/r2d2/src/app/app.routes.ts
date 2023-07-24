@@ -16,6 +16,13 @@ export const appRoutes: Route[] = [
       ),
   },
   {
+    path: 'planets',
+    loadChildren: () =>
+      import('libs/planets/src/lib/planets.module').then(
+        (module) => module.PlanetsModule
+      ),
+  },
+  {
     path: '',
     redirectTo: 'login',
     pathMatch: 'full',

@@ -2,7 +2,7 @@ import { HttpErrorResponse } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { ComponentStore, tapResponse } from '@ngrx/component-store';
 import { switchMap } from 'rxjs';
-import { ApiStarwarsService } from '../api/api-starwars.service';
+import { ApiStarwarsService } from '../../../../data-access/src/lib/api/api-starwars.service';
 import { Persons } from '@force-app/star-wars';
 
 export interface PersosnState {

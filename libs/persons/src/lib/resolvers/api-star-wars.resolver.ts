@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { Resolve, ActivatedRouteSnapshot } from '@angular/router';
 import { Persons } from '@force-app/star-wars';
 import { Observable, map } from 'rxjs';
-import { ApiStarwarsService } from '../api/api-starwars.service';
+import { ApiStarwarsService } from '@force-app/data-access';
 
 @Injectable({ providedIn: 'root' })
 export class ApiStarWarsResolver implements Resolve<Persons> {
